@@ -5,9 +5,9 @@ Library		Selenium2Library	15
 Resource	ObjectRepository.robot
 Resource	ProjectFunctions.robot
 #FunctionlArea_WWWW Functions
-Resource	${RESOURCE}/01_FunctionlArea_WWWW/FamDirFunctions.robot
+Resource	${RESOURCE}/01_FunctionlArea_WWWW/Functions.robot
 #FunctionalArea_XXXX Functions
-Resource	${RESOURCE}/02_FunctionalArea_XXXX/OfferingFunctions.robot
+Resource	${RESOURCE}/02_FunctionalArea_XXXX/Functions.robot
 
 
 *** Variables ***
