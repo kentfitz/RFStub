@@ -1,7 +1,7 @@
 *** Settings ***
-Resource		../SettingsAndLibraries.robot
-Resource		../ObjectRepository.robot
-Resource		../ProjectFunctions.robot
+Resource		../../SettingsAndLibraries.robot
+Resource		../../ObjectRepository.robot
+Resource		../../ProjectFunctions.robot
 Library			Selenium2Library	15
 
 *** Test Cases ***
