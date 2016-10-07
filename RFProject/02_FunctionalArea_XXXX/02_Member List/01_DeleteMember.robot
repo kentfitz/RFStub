@@ -1,5 +1,8 @@
 *** Settings ***
-Resource	${RESOURCE}/SettingsAndLibraries.robot
+Resource		../../SettingsAndLibraries.robot
+Resource		../../ObjectRepository.robot
+Resource		../../ProjectFunctions.robot
+Library			Selenium2Library	15
 
 *** Test Cases ***
 Delete Exisiting Member Via Member Details
