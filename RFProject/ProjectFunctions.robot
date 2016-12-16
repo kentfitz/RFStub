@@ -1,3 +1,7 @@
+*** Settings ***
+Resource        SettingsAndLibraries.robot
+Resource        ObjectRepository.robot
+
 *** Variables ***
 
 *** Keywords ***

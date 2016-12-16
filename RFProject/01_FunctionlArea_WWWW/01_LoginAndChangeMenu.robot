@@ -1,4 +1,6 @@
 *** Settings ***
+Test Setup     Open Browser  ${SUT}  ${BROWSER}
+Test Teardown  Close All Browsers
 Resource		../SettingsAndLibraries.robot
 Resource		../ObjectRepository.robot
 Resource		../ProjectFunctions.robot

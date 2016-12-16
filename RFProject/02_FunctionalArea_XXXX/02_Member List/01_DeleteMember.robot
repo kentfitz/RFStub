@@ -1,5 +1,6 @@
 *** Settings ***
-Resource		../../SettingsAndLibraries.robot
+Test Setup     Open Browser  ${SUT}  ${BROWSER}
+Test Teardown  Close All BrowsersResource		../../SettingsAndLibraries.robot
 Resource		../../ObjectRepository.robot
 Resource		../../ProjectFunctions.robot
 Library			Selenium2Library	15
