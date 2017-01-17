@@ -1,0 +1,203 @@
+Purpose of the Document 
+
+The intention of this document is to describe standards to be followed when designing and developing automated checks within Robot Framework. This document will help ensure consistency across the system, resulting in increased usability and maintainability of tests. The main reason for using a consistent set of conventions is to standardize the structure and style of scripts so that they can easily be read and understood. 
+
+-----------------------------------------------
+
+Scope 
+Standard conventions include the following: 
+-	Naming conventions for variables, functions, script names, and Object Repository 
+-	Commenting and formatting
+-	How to use and organize functions
+-	Use and naming of Variables 
+-----------------------------------------------
+General Guidelines 
+
+CamelCase 
+As defined for each type of item, camelCase should be used. The first word should be lowercase followed by uppercase for each subsequent word. For acronyms, uppercase for each letter should be used (e.g. – thisIsCamelCase, FYIThisIsToo). 
+                                     
+Indentation 
+RobotFramework has strict indentation conventions. Please refer to RobotFramework online documentation for these rules. 
+
+Comments 
+With every function, loop, or unusual code, sufficient comments should be provided to describe the purpose of that block of script. For functions, explanations of each parameter should also be included. Additionally, library scripts, initialization scripts, and test scripts require their own sets of comments. See each section below for detailed information. 
+
+Object Repository 
+Each project contains an object repository. This object repository should contain references to repeatedly referenced elements in the application (buttons, fields, menus, etc). The object repository should NOT be used for test specific data (e.g. specific customer links, specific funds, etc) 
+
+-----------------------------------------------
+
+Test Verification 
+In addition to testing that the procedures do not return errors, test cases should also verify the data entered/saved/created appears correctly both within the system and the database. Ideally, these checks should be part of the same test case that creates the data.  Note: Database checks will be introduced in a later phase of the functional automated check initiative. 
+
+-----------------------------------------------
+
+Variables 
+Variables form the backbone of passing information between scripts as well within each individual function and script. In order to increase readability, reduce duplication, and avoid confusion the following guidelines should be followed when creating variables within RobotFramework 
+
+Variable Types and Uses 
+- Product (Project) Variable – Defined on the project level, Product Variables should only be used when a variable is required for a single project (i.e. – Product) within a project suite but is needed across multiple tests (e.g. – a variable used for only DST but over multiple tests). These should be defined within the SettingsAndLibraries.robot file. 
+
+- Test Script Variable – Created within a test script, these should only be used when a variable is contained to a single test script (e.g. – a variable only found in a single script testing saving a reference). A short description should accompany the variable. 
+
+- Function Variable – Created within a function, whether in a library, initialization script, or test script (e.g. – a variable tracking the actual or expected results). 
+
+-----------------------------------------------
+
+Naming Standards for Variables 
+
+Type Prefix 
+Use the following prefixes with descriptive names for Project Suite, Project, Product Script Library, and Test Script Variables in Test Complete. Variables should be listed in alphabetical order whenever possible. 
+  
+Data Type 					Prefix 			Example 
+Boolean						b 				bFlag 
+Integer 					i 				iCount 
+String						s 				sCurPage 
+String with expected result	sExpString 		sExpString 
+String with actual result 	sActString 		sActString 
+Array 						a 				aCellData 
+
+-----------------------------------------------
+
+Test Suites 
+Test Suites form the part of Robot Framework that run through different screens, clicks, value entries, and tasks. In order to increase coordination and organization, reduce confusing clutter, and enhance searchability, the following standards should be followed when creating Test Suites with RobotFramework. 
+
+File Types and Uses 
+Global Function Library 
+There may be times when a function could be useful across multiple projects (e.g. Regular Expression matcher, random data generator, etc). This Function Library exists outside a project directory structure and must be explicitly called via a Settings call when needed. 
+
+Project Function Library 
+Created for a particular project, these libraries should contain all functions relevant for just one project (i.e. – product) but multiple test suites within that project (e.g. – functions used for only DST but used within multiple test suites). 
+
+Test Suite
+These robot files should test a particular area of functionality within one product.  Note: Multiple test cases can exist within a single test suite. This is useful for testing multiple permutations of a specific function such as Add Fund 
+
+Initialization Script 
+The _init_.robot file should bring in all relevant resources, and complete any other tasks before any Tests within the project are run. This should not contain any new variables or functions. Instead, such items should be specified within global or project scope items and merely referenced within the initialization script. 
+
+-----------------------------------------------
+
+Naming Standards and Organization for Test Suites 
+
+Project Functions Library 
+At the root level of each project, a ProjectFunctions.robot library exists. This should contain all functions relevant for just one project/product. 
+
+Test Suite 
+Test Script Names should be comprised of the following: 
+1.	Execution Order – 01_, 02_, etc. This naming determines in what order the tests will be executed 
+2.	Functional Area: This should give a high level overview of what functional area the Test Suite is exercising. For example. There may be several categories of PQ tests resulting in several test suites within PQ.  
+99_PQ/01_FooterValidation.robot 
+99_PQ/02_SystemResponseTime.robot
+
+-----------------------------------------------
+
+Script Headers & Variable Section 
+Each test suite should contain the following information to communicate relevant information for reviewing and reading the code: 
+
+Settings 
+Required Libraries: If one of the test cases in the test suite requires an external library or function library not included by default in the project, it must be added to the *** Settings *** Section
+ 
+*** Settings ***   
+Library Selenium2Library 15 #Importing the Selenium2Library with a 15 sec timeout rule 
+Resource ../ObjectRepository.robot #Global Keywords and Mappings 
+Resource ../ProjectFunctions.robot 
+
+Variables 
+Each Test Suite should contain a section initializing all variables for the test cases within the test suite.   
+*** Variables *** $
+{sNonARDrug}   SELENIRE - Selenium + Regular $
+{sARDrug}  
+${sSearchLastWord}  	vaccine 
+${sSearchAuthor}    	weinberg 
+${sMFRDate}         	12 Jun 2016 
+${sPMID}            	27676404 
+${sArticleTitle}    	RICTOR polymorphisms affect efficiency 
+
+-----------------------------------------------
+
+Test Case specific 
+Every test case within a test suite should contain the following data: 
+-	Test Case Name (required by Robot Framework) 
+-	Description: Each test case should contain a comment with a one-line, high level description of the test case 
+-	Original Author: Each test case should contain a comment specifying the original author
+-	 Change History: If a major change is made to a test case, a Change History section should be added to the test case with a description of the changes and the change date 
+
+-----------------------------------------------
+
+Functions 
+Functions act as the primary containers for individual test cases, repeated procedures, or reusable data transformations. Functions should only be used when multiple steps are required to complete an action. In order to increase readability and reusability, decreases duplication, and enhance coordination, the following standards should be followed when creating functions 
+
+Function Headers 
+At the top of each function, the following information should be specified to communicate relevant information for reviewing and reading the code: 
+-	Name of the function 
+-	Description of the function
+-	 List of input parameters and their description 
+-	Name of creator
+-	Date of creation 
+
+-----------------------------------------------
+
+Object Repository 
+Only one Object Repository should exist per project 
+
+Global Fields 
+Fields that exist on more than one page (top bar navigation, bottom of page links, etc.) should be mapped in a Global Fields section. These variables with the Object Repository should start as: ${GLOBAL}. 
+*** Variables ***  
+#Global Fields  
+${GLOBAL.btnLogout}			ctl00_Navbar1_logoutbtn 
+${GLOBAL.lnkHello}			ctl00_Navbar1_hlWelcomeMessage 
+${GLOBAL.lnkReferences}		link=References
+
+Web Pages 
+Each functional area should have its own section followed by the object description 
+#Reference - Add/Edit Reference 
+${REF.txtArticleTitle}          ctl00_ContentPlaceHolder1_txt_article_title
+
+Objects 
+Use the following prefixes with descriptive names objects within the Object Repository 
+Field Type 				Prefix 			Example 
+Button					btn 			btnSave 
+Text 					txt 			txtArtTitle 
+Date					date 			dateMFR 
+Link 					lnk 			lnkReferences
+DropDown List 			ddl				ddlDrugr 
+Table					tbl				tblSearchResults
+Checkbox				chk				chkSignalAssess
+Radio Group				rdio			rdioSignalAssess
+
+-----------------------------------------------
+
+Source Control Process 
+All changes should be created within a branch. Upon completion of changes, a pull request will be made for that branch and it will undergo code review.
+ Once changes pass code review, they will be incorporated into master. 
+
+Branch Naming conventions 
+The following naming conventions should be used for working branches of automation. 
+Prefix 
+Every branch name should start with one of the following prefixes 
+wip/       Works in progress; stuff I know won't be finished soon
+feat/      Feature I'm adding or expanding
+bug/       Bug fix (i.e. fixing a problem in the automation suite)
+junk/      Throwaway branch created to experiment
+release/   Branches created to snapshot automation suite for a given release
+
+Functional Area 
+A one or two word statement describing the area of the work underway in the branch. 
+feat/PQTests
+feat/Search
+
+-----------------------------------------------
+
+Peer Review Checklist 
+1.	Run the script at least once to ensure it passes when it should, and, if possible, test that the script fails when applicable. 
+2.	Naming & Organization 
+	a.	Variable names and scopes are correct
+	b.	Script names and locations are correct 
+	c.	Function names and scopes are correct
+	d.	Object Repository is used where appropriate. 
+3.	Comments/Descriptions
+	a.	Variables contain useful and adequate descriptions 
+	b.	Functions contain sufficient comments 
+	c.	Test Cases contain sufficient comments
+	d.	Variables within each type of script contain comments and definitions 
+

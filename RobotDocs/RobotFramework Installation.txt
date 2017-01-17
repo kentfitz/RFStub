@@ -1,0 +1,77 @@
+Robot Framework Installation 
+
+This document details the steps required to get a Robot Framework environment configured. 
+
+Python Installation - Windows
+Download and install python 2.7 
+NOTE: You must not install Python 3.0 as the Selenium2Library (a key part of Robot Framework) is not fully compatible with Python 3.0. It is expected to be compatible in the upcoming months. 
+
+1.	Download: https://www.python.org/ftp/python/2.7.12/python-2.7.12.amd64.msi 
+2.	Run the downloaded .msi file
+3.	If given the option, make sure to install Python for all users 
+Note: The remainder of the instructions assume you installed python in the default location 
+
+Add Python to the system path 
+1.	Windows Menu -> Right click on Computer -> Properties - > Advanced System Settings -> Environment Variables 
+2.	Under System Variables, click on "Path" and then "Edit". (Or if not already present, click "New" 
+3.	Add the following to the end of Variable Value: ;C:\Python27;C:\Python27\Scripts
+	Note: If you had to add Path, remove the first ;
+
+4.	Click "Ok"
+Python Installation - Mac OS X
+Python 2.7 is installed by default. No additional steps required. 
+ 
+____________________________________________________________
+Upgrade pip to the latest version 
+Open a windows command prompt window and run the following: 
+python -m pip install -U pip
+This should upgrade pip to the latest version 
+____________________________________________________________
+
+Install Robot Framework 
+In a Windows command prompt or Mac OS Terminal window run the following: 
+      pip install robotframework
+
+Install Selenium2Library 
+In a Windows command prompt Mac OS Terminal window run the following: 
+pip install robotframework-selenium2Library 
+____________________________________________________________
+
+Install and Configure your IDE 
+Many IDEs can be used with Robot Framework. PyCharm and IntelliJ appear to have some of the most robust support.  These instructions detail the steps to configure PyCharm, but most will be applicable to IntelliJ.
+Note: If you use IntelliJ, you must also install the Python plugin. 
+
+Install PyCharm
+1.	Download PyCharm Community Edition from: https://www.jetbrains.com/pycharm/
+2.	Follow the PyCharm installation instructions
+3.	Install IntelliBot plugin for IDE Preferences->Plugins->Browse Repositories.  Search for Intellibot and click install. 
+4.	Follow the instructions at: https://github.com/millennialmedia/intellibot/wiki/Python-Interpreter
+5.	Follow the instructions at: https://github.com/millennialmedia/intellibot/wiki/Development-Setup
+
+
+____________________________________________________________
+
+Install ChromeDriver - Windows
+1.	Download ChromeDriver from: http://chromedriver.storage.googleapis.com/index.html
+2.	Extract chromedriver to a known location (I recommend creating a WebDrivers directory on your machine and store it there) 
+3.	Add the WebDrivers directory from step to your PATH environment variable. (see Add Python to system path for instructions 
+
+Install ChromeDriver - Mac
+
+1.	Download ChromeDriver from: http://chromedriver.storage.googleapis.com/index.html
+2.	Extract chromedriver to a known location (I recommend creating a WebDrivers directory on your machine and store it there)
+3.	Add the Path to your WebDrivers directory to /etc/paths 
+
+------------------------------------------------------------
+
+Useful Links
+Selenium2 Library. Keywords for use with selenium.
+http://robotframework.org/Selenium2Library/Selenium2Library.html
+
+BuiltIn Library – additional keywords spanning all types of automation.
+http://robotframework.org/robotframework/latest/libraries/BuiltIn.html
+
+
+Other libraries that are available:
+http://robotframework.org/#test-libraries
+We can use any of the standard ones just with an additional library call in the test suite.  External libraries require installation, but not that big a deal.

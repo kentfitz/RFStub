@@ -1,0 +1,41 @@
+Robot Framework Execution
+
+This document details executing tests in Robot Framework. This includes some of the common options you may use.
+
+Results
+Before getting to execution, it is important to understand how results are stored.
+With the most basic execution, Robot Framework will write log files to the location from which you initiated the execution.
+If you are at c:\Users\USERNAME\Desktop when initiating execution, results will be written to your desktop.
+If you are in a location in which you do not have write access, RF will not be able to write the results.
+It is possible to change the destination of the results via the command line, but that will not be covered in this document.
+
+RF will overwrite previous results files upon subsequent runs. If you wish to retain results, you must back them up before additional runs, or execute subsequent runs from a different location.
+
+
+Basic Execution
+Robot Framework (RF) can be executed from several command line options.
+Options include:
+Mac: Terminal
+Mac/Windows: Pycharm Console
+Windows: Command prompt
+
+Execution commands.
+Note: The direction of the slash is dependent on your OS. Documentation was written on a mac, so examples will use the / convention. \ on Windows functions identically.
+
+Basic Execution
+robot /path/to/root/level/of/test/suite
+	e.g.: robot /Users/myname/Documents/automationdir
+Using this method, the entire test suite will be executed
+
+
+Calling Variables files
+There are situations where it is necessary to execute parts of the test suite conditionally for different customers. To this end, RF supports the use of variables files that can be called via the command line. If this is being utilized, it is recommended to have one Variables file per customer that is used as a data driver.
+robot --variablefile /explicit/path/to/variables/file /path/to/root/level/of/test/suite
+
+
+Including specific tests
+Finally, the most commonly used parameter is --include. This allows for the inclusion of only tests that have the specified tag applied. This can be useful both for only running sections of tests, or for execution of a new test for debugging purposes.
+
+robot --include TAGNAME --variablefile  /explicit/path/to/variables/file /path/to/root/level/of/test/suite
+In the example above, RF would execute tests with the tag TAGNAME.
+
