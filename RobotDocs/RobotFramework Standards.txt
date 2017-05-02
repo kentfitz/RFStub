@@ -67,7 +67,7 @@ Global Function Library
 There may be times when a function could be useful across multiple projects (e.g. Regular Expression matcher, random data generator, etc). This Function Library exists outside a project directory structure and must be explicitly called via a Settings call when needed. 
 
 Project Function Library 
-Created for a particular project, these libraries should contain all functions relevant for just one project (i.e. – product) but multiple test suites within that project (e.g. – functions used for only DST but used within multiple test suites). 
+Created for a particular project, these libraries should contain all functions relevant for just one project (i.e. – product) but multiple test suites within that project (e.g. – functions used for only one project but used within multiple test suites).
 
 Test Suite
 These robot files should test a particular area of functionality within one product.  Note: Multiple test cases can exist within a single test suite. This is useful for testing multiple permutations of a specific function such as Add Fund 

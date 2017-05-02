@@ -34,8 +34,22 @@ robot --variablefile /explicit/path/to/variables/file /path/to/root/level/of/tes
 
 
 Including specific tests
-Finally, the most commonly used parameter is --include. This allows for the inclusion of only tests that have the specified tag applied. This can be useful both for only running sections of tests, or for execution of a new test for debugging purposes.
+Finally, one of the the most commonly used parameter is --include. This allows for the inclusion of only tests that have the specified tag applied. This can be useful both for only running sections of tests, or for execution of a new test for debugging purposes.
 
 robot --include TAGNAME --variablefile  /explicit/path/to/variables/file /path/to/root/level/of/test/suite
 In the example above, RF would execute tests with the tag TAGNAME.
 
+
+Re-executing failed tests
+robot /path/to/root/of/test/suite/
+
+robot --rerunfailed output.xml --output rerun.xml  /path/to/root/of/test/suite/
+
+rebot --merge output.xml rerun.xml
+
+e.g.
+robot --exclude pq --variablefile /Users/uname/Documents/REPO/Directory/Variable_Files/CustomerVariable.py /Users/uname/Documents/REPO/Directory/QA_Automation/DST/
+
+robot --rerunfailed output.xml --output rerun.xml --exclude pq --variablefile /Users/uname/Documents/REPO/Directory/Variable_Files/CustomerVariable.py /Users/uname/Documents/REPO/Directory/QA_Automation/DST/
+
+rebot --merge output.xml rerun.xml
